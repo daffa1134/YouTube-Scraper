@@ -2,7 +2,6 @@ import requests
 import json
 from bs4 import BeautifulSoup
 from urllib.parse import urlencode
-import time
 
 def search(query):
     if "watch?v=" in query:
@@ -31,10 +30,27 @@ def getVideoId(result):
         vidId = []
         
         for i in range(len(result)):
-            temp = result[i].get('videoRenderer', 'None')
-            if "videoId" in temp:
+            temp = result[i].get('videoRenderer', None)
+            if temp is not None:
                 vidId.append(temp['videoId'])
         
         return vidId
     else:
         return result['videoRenderer']['videoId']
+
+def extract():
+    output = {
+        "channel": {
+            "name" : None,
+            "link" : None
+        },
+        "videoId" : None,
+        "title": None,
+        "link" : None,
+        "thumbnail": None,
+        "duration" : None,
+        "uploaded": None,
+        "views": None
+    }
+
+    return output
