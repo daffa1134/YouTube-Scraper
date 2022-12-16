@@ -27,7 +27,7 @@ def scrape(link, all=True):
 
 def getVideoId(result):
     if len(result) != 1:
-        result = res['contents']
+        result = result['contents']
         vidId = []
         
         for i in range(len(result)):
