@@ -2,33 +2,28 @@ import requests
 import json
 from bs4 import BeautifulSoup
 from urllib.parse import urlencode
+import time
 
 def search(query):
     if "watch?v=" in query:
-        return query
+        query = query.split('/')[-1].split('&ab_channel')[0]
     
     f = {'search_query' : query}
     return 'https://www.youtube.com/results?' + urlencode(f)
 
 def scrape(link, all=True):
     req = requests.get(link)
+    
     soup = BeautifulSoup(req.text, 'html.parser')
     soup = str(soup)
+    soup = ("=".join(("".join(soup.split("\n"))).split("var ytInitialData")[1].split("=")[1:])).split(";</script>")[0]
 
-    if "watch?v=" in link:
-        soup = ("=".join(("".join(soup.split("\n"))).split("var ytInitialData")[1].split("=")[1:])).split(";</script>")[0]
-        soup = json.loads(soup)['contents']['twoColumnWatchNextResults']['results']['results']['contents'][0]['videoPrimaryInfoRenderer']['title']['runs'][0]['text']
-        return scrape(search(soup), False)
+    result = json.loads(soup)["contents"]["twoColumnSearchResultsRenderer"]["primaryContents"]['sectionListRenderer']['contents'][0]['itemSectionRenderer']
+    
+    if not all:
+        result = result['contents'][0]
 
-    else:
-        soup = ("=".join(("".join(soup.split("\n"))).split("var ytInitialData")[1].split("=")[1:])).split(";</script>")[0]
-        
-        result = json.loads(soup)["contents"]["twoColumnSearchResultsRenderer"]["primaryContents"]['sectionListRenderer']['contents'][0]['itemSectionRenderer']
-        
-        if not all:
-            result = result['contents'][0]
-
-    return json.dumps(result, indent=2)
+    return result
 
 def getVideoId(result):
     if len(result) != 1:
