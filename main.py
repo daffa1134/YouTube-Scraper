@@ -19,7 +19,7 @@ def scrape(query, all=True):
 
         result = json.loads(soup)["contents"]["twoColumnSearchResultsRenderer"]["primaryContents"]['sectionListRenderer']['contents'][0]['itemSectionRenderer']
         
-        if not all:
+        if not all or 'watch' in link:
             result = result['contents']
             temp = result[0].get('videoRenderer')
             
