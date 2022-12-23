@@ -1,5 +1,7 @@
 import requests
 import json
+import copy as cp
+import ast
 from bs4 import BeautifulSoup
 from urllib.parse import urlencode
 
@@ -27,6 +29,7 @@ def scrape(query, all=True):
                 result = result[1]
             else:
                 result = result[0]
+            return [result]
             
         return result
     
@@ -47,8 +50,13 @@ def getVideoId(result):
     else:
         return result['videoRenderer']['videoId']
 
-def extract():
-    output = {
+def getVideoData(result):
+    if len(result) > 1:
+        result = result['contents']
+    
+    extracted = []
+
+    data = {
         "channel": {
             "name" : None,
             "link" : None
@@ -61,5 +69,25 @@ def extract():
         "uploaded": None,
         "views": None
     }
+    
+    for i in range(len(result)):
+        temp = result[i].get('videoRenderer', None)
+        if temp is not None:
+            data['channel']['name'] = temp['ownerText']['runs'][0]['text']
+            data['channel']['link'] = 'https://www.youtube.com' + temp['ownerText']['runs'][0]['navigationEndpoint']['commandMetadata']['webCommandMetadata']['url']
+            data['videoId'] = temp['videoId']
+            data['title'] = temp['title']['runs'][0]['text']
+            data['link'] = 'https://www.youtube.com/watch?v=' + temp['videoId']
+            data['thumbnail'] = 'https://i.ytimg.com/vi/' + temp['videoId'] + '/hqdefault.jpg'
+            data['duration'] = temp['lengthText']['simpleText'].replace('.', ':')
+            data['uploaded'] = 'Not showed' if temp.get('publishedTimeText', None) is None else temp.get('publishedTimeText')['simpleText']
+            data['views'] = 'Not showed' if temp.get('viewCountText', None) is None else temp.get('viewCountText')['simpleText']
+            extracted.append(cp.deepcopy(data))
+    
+    return extracted
 
-    return output
+def toJson(extracted):
+    extracted = ast.literal_eval(str(extracted)[1:-1])
+    extracted = json.dumps(extracted, indent=2)
+    f = open('results.json', 'w')
+    f.write(extracted)
