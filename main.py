@@ -36,20 +36,6 @@ def scrape(query, all=True):
     except:
         return Exception('Error Connection')
 
-def getVideoId(result):
-    if len(result) != 1:
-        result = result['contents']
-        vidId = []
-        
-        for i in range(len(result)):
-            temp = result[i].get('videoRenderer', None)
-            if temp is not None:
-                vidId.append(temp['videoId'])
-        
-        return vidId
-    else:
-        return result['videoRenderer']['videoId']
-
 def getVideoData(result):
     if len(result) > 1:
         result = result['contents']
