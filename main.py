@@ -20,9 +20,16 @@ def scrape(query, all=True):
         result = json.loads(soup)["contents"]["twoColumnSearchResultsRenderer"]["primaryContents"]['sectionListRenderer']['contents'][0]['itemSectionRenderer']
         
         if not all:
-            result = result['contents'][0]
-
+            result = result['contents']
+            temp = result[0].get('videoRenderer')
+            
+            if temp is None:
+                result = result[1]
+            else:
+                result = result[0]
+            
         return result
+    
     except:
         return Exception('Error Connection')
 
