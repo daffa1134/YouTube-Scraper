@@ -17,4 +17,13 @@ def buildArgParser():
 
     return parser
 
+if __name__ == "__main__":
+    args = buildArgParser().parse_args()
 
+    query = " ".join(args.query)
+    
+    result = scraper.scrape(query) if args.one is not True else scraper.scrape(query, all=False)
+
+    extracted = scraper.getVideoData(result)
+    
+    scraper.toJson(extracted, filename="".join(args.output))
