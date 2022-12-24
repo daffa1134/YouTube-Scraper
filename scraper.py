@@ -72,8 +72,8 @@ def getVideoData(result):
     
     return extracted
 
-def toJson(extracted):
+def toJson(extracted, filename):
     extracted = ast.literal_eval(str(extracted))
     extracted = json.dumps(extracted, indent=2)
-    f = open('results.json', 'w')
+    f = open(filename + '.json', 'w')
     f.write(extracted)

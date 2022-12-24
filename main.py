@@ -13,9 +13,8 @@ def buildArgParser():
     
     parser.add_argument('-q', '--query', nargs='*', dest='query', required=True, help='insert query or video link from YouTube', metavar='')
     parser.add_argument('-one', dest='one', action='store_true', help='get one scrape result.')
-    parser.add_argument('-o', '--output', dest='output', help='change output name. Default is "results"', metavar='file')
+    parser.add_argument('-o', '--output', nargs='*',dest='output', default='results', help='change output name. Default is "results"', metavar='')
 
     return parser
 
-if __name__ == 'main':
-    args = buildArgParser().parse_args()
+
