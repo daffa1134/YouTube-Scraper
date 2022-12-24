@@ -1,7 +1,7 @@
 import requests
 import json
-import copy as cp
 import ast
+import copy as cp
 from bs4 import BeautifulSoup
 from urllib.parse import urlencode
 
@@ -73,7 +73,7 @@ def getVideoData(result):
     return extracted
 
 def toJson(extracted):
-    extracted = ast.literal_eval(str(extracted)[1:-1])
+    extracted = ast.literal_eval(str(extracted))
     extracted = json.dumps(extracted, indent=2)
     f = open('results.json', 'w')
     f.write(extracted)
