@@ -24,11 +24,9 @@ def scrape(query, all=True):
         if not all or 'watch' in link:
             result = result['contents']
             temp = result[0].get('videoRenderer')
-            
-            if temp is None:
-                result = result[1]
-            else:
-                result = result[0]
+
+            result = result[1] if temp is None else result[0]
+
             return [result]
             
         return result
@@ -74,6 +72,6 @@ def getVideoData(result):
 
 def toJson(extracted, filename):
     extracted = ast.literal_eval(str(extracted))
-    extracted = json.dumps(extracted, indent=2)
-    f = open(filename + '.json', 'w')
-    f.write(extracted)
+
+    with open(filename + '.json', 'w', encoding='utf-8') as json_file:
+        json.dump(extracted, json_file, ensure_ascii=False, indent=2)
