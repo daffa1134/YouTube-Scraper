@@ -51,16 +51,16 @@ The result stored in `results.json`. This is the result using `-one`
 [
   {
     "channel": {
-      "name": "澤野弘之 / SawanoHiroyuki[nZk]",
-      "link": "https://www.youtube.com/channel/UCbJM_Y06iuUOl3hVPqYcvng"
+      "name": "Diva (Vo.Kairi Yagi) - Topic",
+      "link": "https://www.youtube.com/channel/UCxNM34epbZ_PoZiJa6I6zDQ"
     },
-    "videoId": "dfOsUNxc2Xg",
-    "title": "SawanoHiroyuki[nZk]:Honoka Takahashi『LilaS』×TVアニメ「８６―エイティシックス―」Collaboration Movie",
-    "link": "https://www.youtube.com/watch?v=dfOsUNxc2Xg",
-    "thumbnail": "https://i.ytimg.com/vi/dfOsUNxc2Xg/hqdefault.jpg",
-    "duration": "4:23",
-    "uploaded": "9 bulan yang lalu",
-    "views": "6.433.558 x ditonton"
+    "videoId": "nbSwgEWkM6w",
+    "title": "Galaxy Anthem",
+    "link": "https://www.youtube.com/watch?v=nbSwgEWkM6w",
+    "thumbnail": "https://i.ytimg.com/vi/nbSwgEWkM6w/hqdefault.jpg",
+    "duration": "4:32",
+    "uploaded": "Not showed",
+    "views": "1.296.663 x ditonton"
   }
 ]
 ```
