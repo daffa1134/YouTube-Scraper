@@ -3,7 +3,7 @@
 This is a YouTube scraper without API key and the result will stored in `.json` file
 
 ## Dependencies
-> I 'm assuming you have clone this project
+> I'm assuming you have clone this project
 
 Install the requirements
 ```
