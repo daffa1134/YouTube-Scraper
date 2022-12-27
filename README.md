@@ -1,6 +1,6 @@
 # YouTube-Scraper
 
-This is a YouTube scraper without api key and the result will stored in `.json` file
+This is a YouTube scraper without API key and the result will stored in `.json` file
 
 ## Dependencies
 Install the requirements
