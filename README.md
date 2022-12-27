@@ -25,7 +25,7 @@ main.py [-h] -q [QUERY ...] -one -o [OUTPUT]
 ## Example
 You can search with `query`
 ```
-python main.py -q lilas
+python main.py -q galaxy anthem
 ```
 
 or you can search by `YouTube watch link`
@@ -36,12 +36,12 @@ python main.py -q https://www.youtube.com/watch?v=dfOsUNxc2Xg
 ## Using Options
 1. Get only one result scrape
 ```
-python main.py -q lilas -one
+python main.py -q galaxy anthem -one
 ```
 
 2. Change the output file
 ```
-python main.py -q lilas -o output
+python main.py -q galaxy anthem -o output
 ```
 Then the result will stored in `output.json`
 
