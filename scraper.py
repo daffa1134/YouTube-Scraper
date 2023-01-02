@@ -43,7 +43,8 @@ def getVideoData(result):
     data = {
         "channel": {
             "name" : None,
-            "link" : None
+            "link" : None,
+            "thumbnail" : None
         },
         "videoId" : None,
         "title": None,
@@ -59,6 +60,7 @@ def getVideoData(result):
         if temp is not None:
             data['channel']['name'] = temp['ownerText']['runs'][0]['text']
             data['channel']['link'] = 'https://www.youtube.com' + temp['ownerText']['runs'][0]['navigationEndpoint']['commandMetadata']['webCommandMetadata']['url']
+            data['channel']['thumbnail'] = temp['channelThumbnailSupportedRenderers']['channelThumbnailWithLinkRenderer']['thumbnail']['thumbnails'][0]['url']
             data['videoId'] = temp['videoId']
             data['title'] = temp['title']['runs'][0]['text']
             data['link'] = 'https://www.youtube.com/watch?v=' + temp['videoId']
