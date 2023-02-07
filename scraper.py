@@ -41,7 +41,7 @@ async def scrape_video_page(link):
     except:
         return Exception("Error Connection")
 
-async def scrape_result_page(query, all=True):
+async def scrape_result_page(query, one=False):
     f = {'search_query' : query}
     link = 'https://www.youtube.com/results?' + urlencode(f)
 
@@ -54,7 +54,7 @@ async def scrape_result_page(query, all=True):
                 initial_data = ("=".join(("".join(html.split("\n"))).split("var ytInitialData")[1].split("=")[1:])).split(";</script>")[0]
                 initial_data = json.loads(initial_data)["contents"]["twoColumnSearchResultsRenderer"]["primaryContents"]['sectionListRenderer']['contents'][0]['itemSectionRenderer']
                 
-                if not all:
+                if one:
                     initial_data = initial_data['contents']
                     temp = initial_data[0].get('videoRenderer')
 
@@ -73,7 +73,7 @@ def get_page_data(result):
     
     for i in range(len(result)):
         temp = result[i].get('videoRenderer', None)
-        
+
         if temp is not None:
             data['channel']['name'] = temp['ownerText']['runs'][0]['text']
             data['channel']['link'] = 'https://www.youtube.com' + temp['ownerText']['runs'][0]['navigationEndpoint']['commandMetadata']['webCommandMetadata']['url']
@@ -110,8 +110,8 @@ def second_to_minute(second):
 
     return f"{minute}:{second}"
 
-def toJson(extracted, filename):
+def to_json(extracted, file_name):
     extracted = ast.literal_eval(str(extracted))
 
-    with open(filename + '.json', 'w', encoding='utf-8') as json_file:
+    with open(file_name + '.json', 'w', encoding='utf-8') as json_file:
         json.dump(extracted, json_file, ensure_ascii=False, indent=2)
