@@ -1,5 +1,6 @@
+import scraper as scp
 import argparse
-import scraper
+import asyncio
 
 def msg():
     return 'main.py [-h] -q [QUERY ...] -one -o [OUTPUT]'
@@ -21,9 +22,16 @@ if __name__ == "__main__":
     args = buildArgParser().parse_args()
 
     query = " ".join(args.query)
-    
-    result = scraper.scrape(query) if args.one is not True else scraper.scrape(query, all=False)
 
-    extracted = scraper.getVideoData(result)
+    if "watch?v=" in query:
+        result = asyncio.run(scp.scrape_video_page(query))
+        extracted = scp.get_video_data(result['data'], result['channel'])
+    else:
+        one = args.one
+        result = asyncio.run(scp.scrape_result_page(query, one))
+        extracted = scp.get_page_data(result)
+        
+        if one:
+            extracted = extracted[0]
     
-    scraper.toJson(extracted, filename="".join(args.output))
+    scp.to_json(extracted, file_name="".join(args.output))
