@@ -48,20 +48,18 @@ Then the result will stored in `output.json`
 ## Output
 The result stored in `results.json`. This is the result using `-one`
 ```
-[
-  {
-    "channel": {
-      "name": "Diva (Vo.Kairi Yagi) - Topic",
-      "link": "https://www.youtube.com/channel/UCxNM34epbZ_PoZiJa6I6zDQ",
-      "thumbnail": "https://yt3.ggpht.com/u9hzOOQ11wntPOKbKTv6-LDst4IW29jk_ejFIVkyuVdAfYN7QGZSxRhFnuqaqBkt6nhybVdo2d8=s68-c-k-c0x00ffffff-no-rj"
-    },
-    "videoId": "nbSwgEWkM6w",
-    "title": "Galaxy Anthem",
-    "link": "https://www.youtube.com/watch?v=nbSwgEWkM6w",
-    "thumbnail": "https://i.ytimg.com/vi/nbSwgEWkM6w/hqdefault.jpg",
-    "duration": "4:32",
-    "uploaded": "Not showed",
-    "views": "1.301.005 x ditonton"
-  }
-]
+{
+  "channel": {
+    "name": "Diva (Vo.Kairi Yagi) - Topic",
+    "link": "https://www.youtube.com/channel/UCxNM34epbZ_PoZiJa6I6zDQ",
+    "thumbnail": "https://yt3.ggpht.com/XLaY6Cnzr4uSrnLOcxoFpl0kZ8YdxAbB9eDPMB0vL6eoBlJ6XSano4FDch3tmVjM_Y0sgxtl=s68-c-k-c0x00ffffff-no-rj"
+  },
+  "videoId": "nbSwgEWkM6w",
+  "title": "Galaxy Anthem",
+  "link": "https://www.youtube.com/watch?v=nbSwgEWkM6w",
+  "thumbnail": "https://i.ytimg.com/vi/nbSwgEWkM6w/hqdefault.jpg",
+  "duration": "4:32",
+  "uploaded": "Not showed",
+  "views": "1.325.330 x ditonton"
+}
 ```
